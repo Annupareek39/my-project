@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const route = require("./routes/routes");
 const app = express();
 const bodyparser = require("body-parser")
-
+const cors = require('cors')
 app.use(bodyparser.json())
-
+app.use(cors())
 app.use("/",route)
 // app.get("/", (req,res) =>{
 // res.write("hloo world bhaya!!")
