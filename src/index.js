@@ -7,9 +7,7 @@ const cors = require('cors')
 app.use(bodyparser.json())
 app.use(cors())
 app.use("/",route)
-// app.get("/", (req,res) =>{
-// res.write("hloo world bhaya!!")
-// });
+
 app.use(express.static('path'))
 
 mongoose.connect("mongodb+srv://purohitanu39:DvzaTf5gDcA9gg7a@cluster0.vjq97.mongodb.net/practices")
