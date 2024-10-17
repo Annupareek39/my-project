@@ -12,6 +12,17 @@ const createUser = async (req, res) => {
    }
 }
 
+const createUser1 = async (req, res) => {
+   try {
+      console.log(req.body)
+      const save = await userModel.create(req.body)
+      return res.send({ status: true, msg: save })
+
+   } catch (err) {
+      return res.send({ status: false, msg: err.mess })
+   }
+}
+
 
 const getUser = async (req, res) => {
    try {
@@ -40,13 +51,28 @@ const userId = async (req, res) => {
 
 const userUpdate = async (req, res) => {
    try {
-      const id = req.put.userUpdate;
-      let user1 = await userModel.findByIdAndUpdate(id, firstname, lastname)
-      return res.send({ status: true, data: user1 })
+      const id = req.params.id;
+      const data = req.body
+      // console.log(id)
+      // console.log(data)
+
+     let user1 = await userModel.findByIdAndUpdate(id, data)
+return res.send({ status: true, data: user1 })
    } catch (err) {
-      return res.send({ status: false, data: err })
+      return res.status(500).send({ status: false, data: err.message })
 
    }
 }
 
-module.exports = { createUser, getUser, userId, userUpdate }
+
+const deleteUser = async(req,res)=>{
+   try{
+      const id = req.params.id;
+      let user2= await userModel.findByIdAndDelete(id)
+      return res.send({status: true,data:user2})
+   }catch(err){
+      return res.status(500).send({status:false,data:err.message})
+   }
+}
+
+module.exports = { createUser,deleteUser, getUser, userId, userUpdate }  
