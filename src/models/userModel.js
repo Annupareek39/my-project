@@ -22,24 +22,7 @@ const userSchema = new mongoose.Schema({
         password: { type :String,
              required: true, 
             }, 
-        address: {
-          shipping: {
-            street: {type: String, 
-                required: true,
-            },
-            city: {type:String,
-                 required: true},
-            
-          },
-          billing: {
-            street: {type :String,
-                 required: true},
-            city: { type :String, 
-               required: true},
-            
-          }
-        },
-        
+
       } ,{timestamps:true}
 )
 
