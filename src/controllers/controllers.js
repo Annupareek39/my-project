@@ -41,6 +41,36 @@ const createUser = async (req, res) => {
 }
 
 
+const login=async(req,res)=>{
+   try{
+      console.log(req.body);
+      
+      let {email ,password}=req.body
+      if(!email){
+         return res.status(400).send({status:false,data:"email is required"})
+
+      }
+      if(!password){
+         return res.status(400).send({status:false,data:"password is required"})
+
+      }
+      let checkInDb = await userModel.findOne({email,password})
+      if(!checkInDb){
+         return res.status(404).send({status:false,data:"user not found"})
+
+      }
+      return res.status(200).send({status:true,msg:"login successfully",data:checkInDb})
+   }catch(err){
+      return res.status(500).send({status:false,data:err.message})
+   }
+}
+
+
+
+
+
+
+
 const getUser = async (req, res) => {
    try {
       console.log(req.body);
@@ -88,4 +118,4 @@ const deleteUser = async (req, res) => {
    }
 }
 
-module.exports = { createUser, deleteUser, getUser, userId, userUpdate }  
+module.exports = { createUser, deleteUser, getUser, userId, userUpdate,login }  
