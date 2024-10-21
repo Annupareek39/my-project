@@ -36,7 +36,7 @@ const createUser = async (req, res) => {
       return res.status(201).send({ status: true, msg: save })
 
    } catch (err) {
-      return res.status(500).send({ status: false, msg: err.mess })
+      return res.status(500).send({ status: false, msg: err.message })
    }
 }
 
